@@ -64,6 +64,9 @@ spec:
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
+            # Mount the Northwind SQL here:
+            - name: sql-init
+              mountPath: /docker-entrypoint-initdb.d
 
       volumes:
         - name: postgres-storage

@@ -42,3 +42,10 @@ jobs:
       - name: Deploy Kubernetes Manifests
         run: |
           kubectl apply -f ../k3s/
+      - name: Deploy Kubernetes Manifests
+        working-directory: .
+        run: |
+          # Create the configmap from the sql file (overwrite if exists)
+          kubectl create configmap postgres-db-init --from-file=k3s/northwind.sql -o yaml --dry-run=client | kubectl apply -f -
+          # Apply the postgres deployment
+          kubectl apply -f k3s/
