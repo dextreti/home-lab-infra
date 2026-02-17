@@ -49,4 +49,4 @@ jobs:
           kubectl create configmap postgres-db-init --from-file=k3s/northwind.sql
           
           # 3. Apply the rest of the postgres deployment
-          kubectl apply -f ../k3s/
+          kubectl apply -f k3s/
