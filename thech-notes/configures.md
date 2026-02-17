@@ -24,3 +24,17 @@ Enter name of work folder: Press Enter (Default: _work).
 
 - Option: Settings->Actions->Secrets and variables->Actions
  click : New repository secret
+
+
+estructure folders
+
+ home-lab-infra/
+├── .github/workflows/
+│   └── terraform.yaml      # The "Brain" (Automation)
+├── terraform/              # The "Foundation" (Server/K3s)
+│   ├── main.tf
+│   └── variables.tf
+└── k3s/                              # The "House" (Your Apps)
+    ├── northwind.sql                 # The Data
+    ├── postgres-pod.yaml             # The Database Deployment
+    └── postgres-init-config.yaml     # The ConfigMap for initialization

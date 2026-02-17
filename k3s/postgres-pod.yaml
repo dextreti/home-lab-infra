@@ -72,3 +72,6 @@ spec:
         - name: postgres-storage
           persistentVolumeClaim:
             claimName: postgres-pvc
+        - name: sql-init
+          configMap:
+            name: postgres-db-init
