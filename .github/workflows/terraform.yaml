@@ -38,4 +38,7 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'        
         env:
           TF_VAR_ssh_password: ${{ secrets.SERVER_PASSWORD }}
-        run: terraform apply -auto-approve                
+        run: terraform apply -auto-approve
+      - name: Deploy Kubernetes Manifests
+        run: |
+          kubectl apply -f k3s/
