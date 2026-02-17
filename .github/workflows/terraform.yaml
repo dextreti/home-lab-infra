@@ -45,7 +45,7 @@ jobs:
           # 1. Delete the old configmap if it exists to avoid conflicts
           kubectl delete configmap postgres-db-init --ignore-not-found
           
-          # 2. Use 'create' instead of 'apply' to avoid the annotation size limit
+          # 2. Use 'create' instead of 'apply' to avoid the annotation size limits
           kubectl create configmap postgres-db-init --from-file=k3s/northwind.sql
           
           # 3. Apply the rest of the postgres deployment
