@@ -10,6 +10,10 @@ on:
 jobs:
   terraform:
     name: "Terraform Apply"
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'        
+    env:
+      TF_VAR_ssh_password: ${{ secrets.SERVER_PASSWORD }}
+    run: terraform apply -auto-approve
     # IMPORTANT: This targets your specific Debian machine
     runs-on: [self-hosted, linux, debian]
     
