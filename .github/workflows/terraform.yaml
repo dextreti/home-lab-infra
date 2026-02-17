@@ -39,10 +39,14 @@ jobs:
         env:
           TF_VAR_ssh_password: ${{ secrets.SERVER_PASSWORD }}
         run: terraform apply -auto-approve
-      - name: Deploy Kubernetes Manifests        
+      - name: Deploy Kubernetes Manifests
         working-directory: .
         run: |
-          # Create the configmap from the sql file (overwrite if exists)
-          kubectl create configmap postgres-db-init --from-file=k3s/northwind.sql -o yaml --dry-run=client | kubectl apply -f -
-          # Apply the postgres deployment
+          # 1. Delete the old configmap if it exists to avoid conflicts
+          kubectl delete configmap postgres-db-init --ignore-not-found
+          
+          # 2. Use 'create' instead of 'apply' to avoid the annotation size limit
+          kubectl create configmap postgres-db-init --from-file=k3s/northwind.sql
+          
+          # 3. Apply the rest of the postgres deployment
           kubectl apply -f ../k3s/
