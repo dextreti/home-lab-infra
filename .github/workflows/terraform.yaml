@@ -34,9 +34,6 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve
-
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'        
+        run: terraform apply -auto-approve                
         env:
           TF_VAR_ssh_password: ${{ secrets.SERVER_PASSWORD }}
-        run: terraform apply -auto-approve
